@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:45:00 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/11 19:14:05 by andjenna         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:38:15 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void				ft_exit_error(t_node **stack);
 
 /*				HANDLE INPUT				*/
 char				**ft_split(char const *s, char c);
-int					ft_isnbr(char **av);
+int					ft_isnbr(char *av);
 int					ft_isdigit(char c);
 int					ft_strcmp(char *s1, char *s2);
 int					ft_checkdouble(char **av);
@@ -47,8 +47,10 @@ t_node				*ft_parse_arg(char **av);
 t_node				*ft_init_stack(int value);
 void				ft_free_stack(t_node **stack);
 void				ft_exit_error(t_node **stack);
-t_node				*ft_add_to_stack(t_node *stack, long value);
+void				ft_add_to_stack(t_node **stack, long value);
+t_node				*ft_lstlast(t_node *lst);
 void				ft_printf_stack(t_node *stack);
+void				ft_lstadd_back(t_node **lst, t_node *new);
 
 /*					COMMAND					*/
 

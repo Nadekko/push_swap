@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:44:04 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/11 19:17:54 by andjenna         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:44:16 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@ int	ft_checkinput(char **av, int ac)
 	int	i;
 
 	i = 1;
-	while (av[i])
+	if (ac == 2)
+		ft_split(av[1], ' ');
+	else
+		av += 1;
+	while (i < ac)
 	{
-		if (ac == 2)
-			ft_split(av[i], ' ');
-		if (!ft_isnbr(&av[i]))
+		printf("test\n");
+		if (!ft_isnbr(av[i]))
 			return (0);
 		i++;
 	}
-	if (ft_checkdouble(av))
+	if (!ft_checkdouble(av))
 		return (0);
 	return (1);
 }
@@ -50,21 +53,9 @@ t_node	*ft_parse_arg(char **av)
 	while (*av)
 	{
 		num = ft_atol(*av);
-		stack_a = ft_add_to_stack(stack_a, num);
+		ft_add_to_stack(&stack_a, num);
 		av++;
 	}
 	return (stack_a);
 }
 
-void	ft_printf_stack(t_node *stack)
-{
-	t_node	*current;
-
-	current = stack;
-	while (current != NULL)
-	{	
-		printf("%d", current->value);
-		current = current->next;
-	}
-	printf("\n");
-}

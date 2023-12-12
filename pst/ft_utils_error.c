@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:25:01 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/11 17:55:51 by andjenna         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:07:17 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	ft_checkdouble(char **av)
 	i = 0;
 	while (av[i])
 	{
-		j = 1;
+		j = i + 1;
 		while (av[j])
 		{
-			if (j != i && ft_strcmp(av[i], av[j]) == 0)
+			if (ft_atol(av[i]) == ft_atol(av[j]))
 				return (0);
 			j++;
 		}
@@ -77,18 +77,16 @@ long	ft_atol(char *nptr)
 	return (num * neg);
 }
 
-int	ft_isnbr(char **av)
+int	ft_isnbr(char *av)
 {
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 0;
-	if ((av[1][0] == '+' || av[1][0] == '-') && av[1][1] != '\0')
+	if ((av[0] == '+' || av[0] == '-') && av[1] != '\0')
 		i++;
 	while (av[i])
 	{
-		if (!ft_isdigit(av[i][j]))
+		if (!ft_isdigit(av[i]))
 			return (0);
 		i++;
 	}
