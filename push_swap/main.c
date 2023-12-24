@@ -6,17 +6,17 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:57:23 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/19 20:29:08 by andjenna         ###   ########.fr       */
+/*   Updated: 2023/12/24 04:58:00 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_sorted(t_list *stack_a)
+int	is_sorted(t_list *lst)
 {
 	t_list	*cpy;
 
-	cpy = stack_a;
+	cpy = lst;
 	while (cpy->next)
 	{
 		if (cpy->data > cpy->next->data)
@@ -40,13 +40,41 @@ int	main(int ac, char **av)
 	else
 		av += 1;
 	stack_init(&a, av);
+	put_index(a, stack_len(a));
+	get_position(a);
 	if (!is_sorted(a))
 	{
 		printf("len of stack : %d\n", stack_len(a));
-		do_sa(&a);
-		do_sa(&a);
-		do_sa(&a);
+		if (stack_len(a) == 2 || stack_len(a) == 3)
+			sort_tree(&a);
+		else if (stack_len(a) == 5)
+			sort_five(&a, &b);
+		printf("STACK A\n");
 		lstprint(a);
+		printf("SATCK B\n");
+		lstprint(b);
+		find_index(a);
 	}
 	return (0);
 }
+
+// printf("MIN IS : %d\n", find_min(a));
+// printf("\n**stack a**\n");
+// lstprint(a);
+// printf("\n**stack b**\n");
+// lstprint(b);
+// printf("MAX IS : %d\n", find_max(a));
+// printf("POS MIN IS : %d\n", find_index(a, find_min(a)));
+// printf("POS MAX IS : %d\n", find_index(a, find_max(a)));
+
+// do_pb(&a, &b);
+// do_pb(&a, &b);
+// do_pb(&a, &b);
+// printf("\n**stack a**\n");
+// lstprint(a);
+// printf("\n");
+// printf("\n**stack b**\n");
+// lstprint(b);
+// printf("\n");
+// do_pa(&b, &a);
+// do_pa(&b, &a);

@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 19:07:13 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/19 18:00:32 by andjenna         ###   ########.fr       */
+/*   Updated: 2023/12/23 18:59:16 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,24 @@ long	ft_atol(char *str)
 		str++;
 	}
 	return (neg * nbr);
+}
+
+int	error_repeat(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (av[i])
+	{
+		j = i + 1;
+		while (av[j])
+		{
+			if (ft_atol(av[i]) == ft_atol(av[j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
