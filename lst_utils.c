@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:36:47 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/29 19:11:51 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/01 18:02:01 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	lstprint(t_list *lst)
 {
 	while (lst != NULL)
 	{
-		printf("%ld | index = %d | pos = %d",lst->data,
-			lst->index, lst->position);
+		printf("%ld | index = %d",lst->data,
+			lst->index);
 		if (!lst->prev)
 			printf("\n");
 		if (lst->prev)

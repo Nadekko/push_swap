@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:58:00 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/29 19:58:31 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/01 19:57:00 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,24 @@ void				do_pb(t_list **a, t_list **b);
 int					is_sorted(t_list *lst);
 int					find_min(t_list *lst);
 int					find_max(t_list *lst);
+int					get_distance(t_list **lst, int index);
+int 				get_min_index(t_list **lst, int val);
+long				is_abs(long n);
 void				put_index(t_list *lst, int lst_len);
 void				find_index(t_list *lst);
-long				is_abs(long n);
 void				get_position(t_list *lst);
 // void				find_tiniest(t_list **lst);
 // void				find_highest(t_list **lst); 
 // int					find_best_pos(t_list **lst, t_list **hold);
 // t_list				*set_target_node(t_list **lst, long target);
 
-//*						 SORT THREE						*//
-void				sort_tree(t_list **lst);
-
-//*					     SORT FIVE						*//
+//*						 SORT					*//
 void				sort_stack(t_list **lst, t_list **hold);
-void				divide_lst(t_list *lst);
-// void				insert_at_pos(t_list **lst, int pos, long target);
+void				simple_sort(t_list **lst, t_list **hold);
+void				sort_tree(t_list **lst);
+void				sort_four(t_list **lst, t_list **hold);
+void				sort_five(t_list **lst, t_list **hold);
+void				radix_sort(t_list **lst, t_list **hold);
+void				push_lowest(t_list **lst, t_list **hold);
 
 #endif

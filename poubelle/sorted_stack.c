@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   sorted_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 20:23:00 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 16:48:48 by andjenna         ###   ########.fr       */
+/*   Created: 2023/12/28 17:30:19 by andjenna          #+#    #+#             */
+/*   Updated: 2023/12/28 17:30:21 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_error(char *err)
+void	push_until_tree(t_list **lst, t_list **hold)
 {
-	while (*err)
-		write(2, err++, 1);
-	exit (EXIT_FAILURE);
+	while (stack_len(*lst) != 3)
+		do_pb(lst, hold);
 }
 
-void	lst_delone(t_list *lst)
+void	sort_stack(t_list **lst, t_list **hold)
 {
-	if (lst == NULL)
-		return ;
-	lst->prev = NULL;
-	lst->next = NULL;
-	free(lst);
-}
+	int	lst_len;
 
-void	lst_clear(t_list **lst)
-{
-	t_list	*temp;
-	t_list	*next;
-
-	if (lst == NULL)
+	lst_len = stack_len(*lst);
+	if (!*lst)
 		return ;
-	temp = *lst;
-	while (temp != NULL)
-	{
-		next = temp->next;
-		lst_delone(temp);
-		temp = next;
-	}
-	*lst = NULL;
+	push_until_tree(lst, hold);
+	if (stack_len(*lst) == 3)
+		sort_tree(lst);
 }

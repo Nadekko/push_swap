@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:57:23 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/29 19:33:39 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/01 19:57:17 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ int	is_sorted(t_list *lst)
 	return (1);
 }
 
+void	sort_stack(t_list **lst, t_list **hold)
+{
+	if (is_sorted(*lst) || stack_len(*lst) < 1)
+		return ;
+	else if (stack_len(*lst) <= 5)
+		simple_sort(lst, hold);
+	else
+		push_lowest(lst, hold);
+}
 int	main(int ac, char **av)
 {
 	t_list	*a;
@@ -40,21 +49,11 @@ int	main(int ac, char **av)
 	else
 		av += 1;
 	stack_init(&a, av);
-	put_index(a, stack_len(a));
-	get_position(a);
-	// divide_lst(a);
-	if (!is_sorted(a))
-	{
-		printf("len of stack : %d\n", stack_len(a));
-		if (stack_len(a) == 2 || stack_len(a) == 3)
-			sort_tree(&a);
-		else if (stack_len(a) > 3)
-			sort_stack(&a, &b);
-		printf("STACK A\n");
-		lstprint(a);
-		printf("STACK B\n");
-		lstprint(b);
-	}
+	sort_stack(&a, &b);
+	printf("STACK A\n");
+	lstprint(a);
+	printf("STACK B\n");
+	lstprint(b);
 	lst_clear(&a);
 	lst_clear(&b);
 	return (0);

@@ -1,46 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_utils.c                                      :+:      :+:    :+:   */
+/*   alog_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/18 20:23:00 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 16:48:48 by andjenna         ###   ########.fr       */
+/*   Created: 2024/01/01 19:44:31 by andjenna          #+#    #+#             */
+/*   Updated: 2024/01/01 19:56:23 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_error(char *err)
+void	push_lowest(t_list **lst, t_list **hold)
 {
-	while (*err)
-		write(2, err++, 1);
-	exit (EXIT_FAILURE);
-}
+	t_list	*temp = *lst;
+	int		count = 0;
+	int		min;
 
-void	lst_delone(t_list *lst)
-{
-	if (lst == NULL)
-		return ;
-	lst->prev = NULL;
-	lst->next = NULL;
-	free(lst);
-}
-
-void	lst_clear(t_list **lst)
-{
-	t_list	*temp;
-	t_list	*next;
-
-	if (lst == NULL)
-		return ;
-	temp = *lst;
-	while (temp != NULL)
+	while (*lst && count < 20)
 	{
-		next = temp->next;
-		lst_delone(temp);
-		temp = next;
+		min = find_min(temp);
+		while (temp != NULL)
+		{
+			
+			if (min <= temp->data)
+				do_pb(lst, hold);
+			else if (min > temp->data)
+				do_ra(lst);
+			temp = temp->next;
+		}
+		count++;
 	}
-	*lst = NULL;
 }

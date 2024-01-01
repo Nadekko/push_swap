@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:45:43 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/29 19:50:58 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/01 17:55:42 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	stack_init(t_list **lst, char **av)
 		lstadd_back(lst, create_node(nbr));
 		i++;
 	}
-	ft_free(av, i);
+	put_index(*lst, stack_len(*lst));
 }
 
 void	put_index(t_list *lst, int lst_len)
