@@ -6,13 +6,13 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:06:20 by andjenna          #+#    #+#             */
-/*   Updated: 2023/12/29 19:50:32 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:54:19 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_free(char **str, int size)
+static int	ft_free(char **str, int size)
 {
 	while (size >= 0)
 	{

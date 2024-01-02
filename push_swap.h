@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:58:00 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 19:57:00 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:46:46 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ t_list				*create_node(long value);
 void				print_error(char *err);
 void				lst_delone(t_list *lst);
 void				lst_clear(t_list **lst);
-int					ft_free(char **str, int size);
+void				free_tab(char **str);
+int					is_empty(t_list *lst);
+int					is_sorted(t_list *lst);
 
 //*							COMMAND						*//
 void				do_sa(t_list **a);
@@ -71,15 +73,16 @@ void				do_pa(t_list **b, t_list **a);
 void				do_pb(t_list **a, t_list **b);
 
 //*							ALGO						*//
-int					is_sorted(t_list *lst);
 int					find_min(t_list *lst);
 int					find_max(t_list *lst);
 int					get_distance(t_list **lst, int index);
 int 				get_min_index(t_list **lst, int val);
+int 				get_max_index(t_list **lst, int val);
 long				is_abs(long n);
 void				put_index(t_list *lst, int lst_len);
 void				find_index(t_list *lst);
 void				get_position(t_list *lst);
+void				push_back_to_lst(t_list **lst, t_list **hold);
 // void				find_tiniest(t_list **lst);
 // void				find_highest(t_list **lst); 
 // int					find_best_pos(t_list **lst, t_list **hold);
@@ -93,5 +96,6 @@ void				sort_four(t_list **lst, t_list **hold);
 void				sort_five(t_list **lst, t_list **hold);
 void				radix_sort(t_list **lst, t_list **hold);
 void				push_lowest(t_list **lst, t_list **hold);
+void				push_biggest(t_list **lst, t_list **hold);
 
 #endif

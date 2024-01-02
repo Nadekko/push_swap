@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:37:34 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 17:31:44 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:47:05 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,22 @@ int get_min_index(t_list **lst, int val)
 	return (min_index);
 }
 
+int get_max_index(t_list **lst, int val)
+{
+	t_list *temp;
+	int max_index;
+
+	temp = *lst;
+	max_index = temp->index;
+	while (temp->next)
+	{
+		temp = temp->next;
+		if (temp->index > max_index && temp->index != val)
+			max_index = temp->index;
+	}
+	return (max_index);
+}
+
 int get_distance(t_list **lst, int index)
 {
 	t_list *temp;
@@ -81,6 +97,8 @@ long is_abs(long n)
 		n = -n;
 	return (n);
 }
+
+
 
 // void	find_current_index(t_list *lst)
 // {

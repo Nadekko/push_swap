@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:57:23 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 19:57:17 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:55:46 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	sort_stack(t_list **lst, t_list **hold)
 	else if (stack_len(*lst) <= 5)
 		simple_sort(lst, hold);
 	else
+	{
 		push_lowest(lst, hold);
+		// push_back_to_lst(lst, hold);
+		// push_biggest(lst,hold);
+	}
 }
 int	main(int ac, char **av)
 {
@@ -56,6 +60,8 @@ int	main(int ac, char **av)
 	lstprint(b);
 	lst_clear(&a);
 	lst_clear(&b);
+	if (ac == 2)
+		free_tab(av);
 	return (0);
 }
 
