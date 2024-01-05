@@ -6,100 +6,124 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:37:34 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/02 16:47:05 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:21:53 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_min(t_list *lst)
+int	get_min_index(t_list **lst)
 {
-	t_list *cpy;
-	int i;
-
-	cpy = lst;
-	i = cpy->data;
-	while (cpy)
-	{
-		if (cpy->data < i)
-			i = cpy->data;
-		cpy = cpy->next;
-	}
-	return (i);
-}
-
-int find_max(t_list *lst)
-{
-	int i;
-
-	i = lst->data;
-	while (lst)
-	{
-		if (lst->data > i)
-			i = lst->data;
-		lst = lst->next;
-	}
-	return (i);
-}
-
-int get_min_index(t_list **lst, int val)
-{
-	t_list *temp;
-	int min_index;
+	t_list	*temp;
+	int		min_index;
 
 	temp = *lst;
 	min_index = temp->index;
 	while (temp->next)
 	{
 		temp = temp->next;
-		if (temp->index < min_index && temp->index != val)
+		if (temp->index < min_index)
 			min_index = temp->index;
 	}
+	printf("min_index = %d\n", min_index);
 	return (min_index);
 }
 
-int get_max_index(t_list **lst, int val)
+void	reset_midpoint(t_list **lst)
 {
-	t_list *temp;
-	int max_index;
-
-	temp = *lst;
-	max_index = temp->index;
-	while (temp->next)
-	{
-		temp = temp->next;
-		if (temp->index > max_index && temp->index != val)
-			max_index = temp->index;
-	}
-	return (max_index);
+	reset_index(*lst);
+	put_index(*lst, stack_len(*lst));
+	get_mid_data(lst);
 }
 
-int get_distance(t_list **lst, int index)
+int	get_mid_data(t_list **lst)
 {
-	t_list *temp;
-	int distance;
+	int		mid_len;
+	t_list	*current;
+
+	mid_len = stack_len(*lst) / 2;
+	current = *lst;
+	while (current)
+	{
+		if (current->index == mid_len + 1)
+			return (current->data);
+		current = current->next;
+	}
+	return (0);
+}
+
+int	get_distance(t_list **lst, int index)
+{
+	t_list	*temp;
+	int		distance;
 
 	distance = 0;
 	temp = *lst;
 	while (temp)
 	{
 		if (temp->index == index)
-			break;
+			break ;
 		distance++;
 		temp = temp->next;
 	}
 	return (distance);
 }
 
-long is_abs(long n)
-{
-	if (n < 0)
-		n = -n;
-	return (n);
-}
+
+// int	get_max_index(t_list **lst)
+// {
+// 	t_list	*temp;
+// 	int		max_index;
+
+// 	temp = *lst;
+// 	max_index = temp->index;
+// 	while (temp->next)
+// 	{
+// 		temp = temp->next;
+// 		if (temp->index > max_index)
+// 			max_index = temp->index;
+// 	}
+// 	printf("max_index = %d\n", max_index);
+// 	return (max_index);
+// }
+
+// long	is_abs(long n)
+// {
+// 	if (n < 0)
+// 		n = -n;
+// 	return (n);
+// }
 
 
+// int find_min(t_list *lst)
+// {
+// 	t_list *cpy;
+// 	int i;
 
+// 	cpy = lst;
+// 	i = cpy->data;
+// 	while (cpy)
+// 	{
+// 		if (cpy->data < i)
+// 			i = cpy->data;
+// 		cpy = cpy->next;
+// 	}
+// 	return (i);
+// }
+
+// int find_max(t_list *lst)
+// {
+// 	int i;
+
+// 	i = lst->data;
+// 	while (lst)
+// 	{
+// 		if (lst->data > i)
+// 			i = lst->data;
+// 		lst = lst->next;
+// 	}
+// 	return (i);
+// }
 // void	find_current_index(t_list *lst)
 // {
 // 	int	i;

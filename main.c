@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:57:23 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/02 16:55:46 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:29:47 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,34 @@ int	is_sorted(t_list *lst)
 	return (1);
 }
 
+int	is_empty(t_list *lst)
+{
+	if (lst == NULL)
+		return (1);
+	return (0);
+}
+
 void	sort_stack(t_list **lst, t_list **hold)
 {
-	if (is_sorted(*lst) || stack_len(*lst) < 1)
-		return ;
-	else if (stack_len(*lst) <= 5)
+	// if (is_sorted(*lst) || stack_len(*lst) < 1)
+	// 	return ;
+	if (stack_len(*lst) <= 5)
 		simple_sort(lst, hold);
 	else
 	{
-		push_lowest(lst, hold);
-		// push_back_to_lst(lst, hold);
-		// push_biggest(lst,hold);
+		while (stack_len(*lst) > 3)
+		{	
+			move_less_than_midpoint(lst, hold);
+			if (!is_sorted(*lst))
+				simple_sort(lst, hold);
+		}
+		while (!is_empty(*hold))
+		{
+			move_more_than_midpoint(hold, lst);
+		}
 	}
 }
+
 int	main(int ac, char **av)
 {
 	t_list	*a;
@@ -53,7 +68,10 @@ int	main(int ac, char **av)
 	else
 		av += 1;
 	stack_init(&a, av);
+	if (is_sorted(a) || stack_len(a) < 1)
+		return (0);
 	sort_stack(&a, &b);
+	printf("len of stack : %d | len / 2 = %d\n", stack_len(a), stack_len(a) / 2);
 	printf("STACK A\n");
 	lstprint(a);
 	printf("STACK B\n");

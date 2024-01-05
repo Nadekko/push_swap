@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 16:34:30 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/01 18:06:43 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:59:08 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	sort_four(t_list **lst, t_list **hold)
 {
 	int	disctance;
 
-	disctance = get_distance(lst, get_min_index(lst, -1));
+	disctance = get_distance(lst, get_min_index(lst));
 	if (disctance == 1)
 		do_ra(lst);
 	else if (disctance == 2)
@@ -56,7 +56,7 @@ void	sort_five(t_list **lst, t_list **hold)
 {
 	int	distance;
 
-	distance = get_distance(lst, get_min_index(lst, -1));
+	distance = get_distance(lst, get_min_index(lst));
 	if (distance == 1)
 		do_ra(lst);
 	else if (distance == 2)
@@ -85,7 +85,7 @@ void	simple_sort(t_list **lst, t_list **hold)
 	size = stack_len(*lst);
 	if (size == 2)
 		do_sa(lst);
-	else if (size == 3)
+	else if (size <= 3)
 		sort_tree(lst);
 	else if (size == 4)
 		sort_four(lst, hold);

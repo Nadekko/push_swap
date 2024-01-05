@@ -6,24 +6,11 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:45:43 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/02 16:49:58 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:44:13 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	error_input(char **av)
-{
-	int		i;
-
-	i = -1;
-	while (av[++i])
-		if (is_nbr(av[i]) == 0)
-			return (0);
-	if (error_repeat(av) == 0)
-		return (0);
-	return (1);
-}
 
 void	stack_init(t_list **lst, char **av)
 {
@@ -75,23 +62,38 @@ void	put_index(t_list *lst, int lst_len)
 	}
 }
 
-void	get_position(t_list *lst)
+t_list	*create_node(long value)
 {
-	int	i;
+	t_list	*new_node;
 
-	i = 1;
-	while (lst)
-	{
-		lst->position = i;
-		lst = lst->next;
-		++i;
-	}
+	new_node = malloc(sizeof(t_list));
+	if (!new_node)
+		exit(EXIT_FAILURE);
+	new_node->data = value;
+	new_node->index = -1;
+	new_node->group = -1;
+	new_node->prev = NULL;
+	new_node->next = NULL;
+	return (new_node);
 }
 
-// void	get_target_pos(t_list **lst, t_list **hold)
+void	reset_index(t_list *lst)
+{
+	while (lst)
+	{
+		lst->index = -1;
+		lst = lst->next;
+	}
+}
+// void	get_position(t_list *lst)
 // {
-// 	t_list *temp;
-// 	int		target_node;
+// 	int	i;
 
-
+// 	i = 1;
+// 	while (lst)
+// 	{
+// 		lst->position = i;
+// 		lst = lst->next;
+// 		++i;
+// 	}
 // }

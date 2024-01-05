@@ -6,7 +6,7 @@
 /*   By: andjenna <andjenna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:23:00 by andjenna          #+#    #+#             */
-/*   Updated: 2024/01/02 16:48:27 by andjenna         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:29:56 by andjenna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_tab(char **str)
 	int	i;
 
 	i = -1;
-	while(str[++i])
+	while (str[++i])
 		free(str[i]);
 	free(str);
 	str = NULL;
@@ -56,9 +56,15 @@ void	lst_clear(t_list **lst)
 	*lst = NULL;
 }
 
-int	is_empty(t_list *lst)
+int	error_input(char **av)
 {
-	if (lst == NULL)
-		return (1);
-	return (0);
+	int		i;
+
+	i = -1;
+	while (av[++i])
+		if (is_nbr(av[i]) == 0)
+			return (0);
+	if (error_repeat(av) == 0)
+		return (0);
+	return (1);
 }
